@@ -1,16 +1,14 @@
-﻿@using AzureNamingTool.Helpers
+@using AzureNamingTool.Helpers
 @using AzureNamingTool.Models
 @inject StateContainer state
 @inject IHttpContextAccessor httpContextAccessor;
 @{
-    //Layout = "_Layout";
-
-    // Verify the site configration files are present
+    // Verify the site configuration files are present
     ConfigurationHelper.VerifyConfiguration(state);
     ConfigurationHelper.VerifySecurity(state);
 
     var identityProviderDetails = new IdentityProviderDetails();
-    //Check if there is an HttpContext object
+    // Check if there is an HttpContext object
     if (GeneralHelper.IsNotNull(httpContextAccessor))
     {
         if (GeneralHelper.IsNotNull(httpContextAccessor.HttpContext!.Request.Headers))
@@ -45,6 +43,19 @@
         }
     }
 }
+
+<Router AppAssembly="@typeof(Program).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)" />
+        <FocusOnNavigate RouteData="routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <LayoutView Layout="typeof(MainLayout)">
+            <p>Sorry, there's nothing at this address.</p>
+        </LayoutView>
+    </NotFound>
+</Router>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,11 +67,23 @@
     <link href="css/site.css" rel="stylesheet" />
     <link href="AzureNamingTool.styles.css" rel="stylesheet" />
     <link href="/_content/PSC.Blazor.Components.MarkdownEditor/css/easymde.min.css" rel="stylesheet" />
-    <HeadOutlet @rendermode="InteractiveServer" />
+    <HeadOutlet />
 </head>
 
 <body>
-    <Routes @rendermode="InteractiveServer" identityProviderDetails="identityProviderDetails" />
+    <div id="app">
+        <Router AppAssembly="@typeof(Program).Assembly" AdditionalAssemblies="new[] { typeof(YourNamespace.YourComponent).Assembly }">
+            <Found Context="routeData">
+                <RouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)" />
+                <FocusOnNavigate RouteData="routeData" Selector="h1" />
+            </Found>
+            <NotFound>
+                <LayoutView Layout="typeof(MainLayout)">
+                    <p>Sorry, there's nothing at this address.</p>
+                </LayoutView>
+            </NotFound>
+        </Router>
+    </div>
     <script src="_framework/blazor.web.js"></script>
     <script src="js/jquery-3.7.0.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
@@ -69,9 +92,9 @@
 </body>
 
 </html>
-<script>
 
-    //Get the button:
+<script>
+    // Get the button:
     scrollToTop = document.getElementById("btnScrollToTop");
 
     // When the user scrolls down 20px from the top of the document, show the button
