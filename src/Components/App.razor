@@ -1,7 +1,9 @@
 @using AzureNamingTool.Helpers
 @using AzureNamingTool.Models
+@using AzureNamingTool.Components.Layout
 @inject StateContainer state
-@inject IHttpContextAccessor httpContextAccessor;
+@inject IHttpContextAccessor httpContextAccessor
+
 @{
     // Verify the site configuration files are present
     ConfigurationHelper.VerifyConfiguration(state);
@@ -72,7 +74,7 @@
 
 <body>
     <div id="app">
-        <Router AppAssembly="@typeof(Program).Assembly" AdditionalAssemblies="new[] { typeof(YourNamespace.YourComponent).Assembly }">
+        <Router AppAssembly="@typeof(Program).Assembly">
             <Found Context="routeData">
                 <RouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)" />
                 <FocusOnNavigate RouteData="routeData" Selector="h1" />
