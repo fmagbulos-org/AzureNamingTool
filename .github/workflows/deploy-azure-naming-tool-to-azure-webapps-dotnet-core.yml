@@ -25,8 +25,15 @@ env:
 
 on:
   push:
-    branches: [ "main" ]
+    branches: 
+      - main
+      - ademirs-update
   workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to deploy'
+        required: true
+        default: 'ademirs-update'
   
 defaults:
   run:
