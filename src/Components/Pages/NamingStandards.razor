@@ -1,0 +1,138 @@
+@page "/naming-standards"
+@using Microsoft.AspNetCore.Components
+
+<h1>Naming Standards Documentation</h1>
+
+<h2>Purpose</h2>
+<p>The purpose of this document is to establish a standardized naming convention for resources deployed in Microsoft Azure by OPPD. This convention aims to promote consistency, clarity, and efficient management of Azure resources.</p>
+
+<h2>Standard</h2>
+<p>The Azure Naming Convention standard for OPPD Company is as follows:</p>
+
+<h3>2.1 General Naming Guidelines</h3>
+<p>There are several best practices from Microsoft that companies should follow to ensure consistency and avoid confusion. The key is to maintain consistency and ensure that the names provide clear information about the resource's purpose, environment, and role within the system. Here are some recommended naming conventions:</p>
+
+<ul>
+    <li><strong>Consistency:</strong> All resource names should follow a consistent format and pattern.</li>
+    <li><strong>Descriptive and Meaningful Names:</strong> Resource names should accurately reflect their purpose or function.</li>
+    <li><strong>Use lowercase letters:</strong> All resource group/resource names should be in lowercase letters. This helps ensure consistency and makes it easier to read and type.</li>
+    <li><strong>Case Sensitivity:</strong> Resource names are case-insensitive.</li>
+    <li><strong>Use hyphens to separate words:</strong> When naming resources, use hyphens to separate words instead of spaces. For example, instead of "Virtual Network 1," use "vnet-001."</li>
+    <li><strong>Be descriptive:</strong> Use descriptive names that provide context about the resource's purpose and function. For example, instead of "virtual network 1," use "vnet-gis-prod-svc-cus-001."</li>
+</ul>
+
+<p><code>[resource type]-[application]-[environment]-[resource group name]-[az location]-[instance]</code></p>
+
+<p><strong>Include the environment:</strong> When creating resources for different environments such as development, test, QA, UAT and production, include an environment identifier in the name. For example, "rg-gis-dev-svc-cus-001" or "rg-gis-prod-svc-cus-001."</p>
+
+<p><code>[resource group]-[application]-[environment]-[resource group name]-[az location]-[instance]</code></p>
+
+<p><strong>Use consistent naming across subscriptions:</strong> If there are multiple Azure subscriptions in OPPD tenant, use consistent naming conventions across all subscriptions to ensure clarity and consistency. For example, “Oppd-Gis-Non-Production” or “Oppd-Gis-Production”.</p>
+
+<h3>Resource Group (rg)</h3>
+<p><strong>Environment abbreviation:</strong></p>
+<ul>
+    <li>P = Production</li>
+    <li>T = UAT</li>
+    <li>Q = Quality Assurance</li>
+    <li>D = Development</li>
+    <li>M = Demo</li>
+</ul>
+
+<p><strong>Region abbreviation (optional):</strong></p>
+<ul>
+    <li>Central US: cus</li>
+    <li>East US: eus2</li>
+    <li>West Europe: weu</li>
+</ul>
+
+<p>Example: <code>rg-gis-prod-cus-001</code></p>
+<p><code>[resource group]-[application]-[environment]-[location]-[instance]</code></p>
+
+<h3>Virtual Machines (VMs)</h3>
+<p>(Note: We are following OPPD on-prem standards for VMs and SQL instances naming conventions. We are not using hyphens to separate words)</p>
+
+<p><strong>Description of the Naming Scheme</strong></p>
+<p>The naming scheme is composed of a series of parts, with each part serving a particular purpose.</p>
+
+<p><strong>Platform</strong></p>
+<p>Format: One (1) alphabetic character</p>
+<p>Purpose: Describes the operating system that the host utilizes.</p>
+<p>Examples:</p>
+<ul>
+    <li>W = Windows</li>
+    <li>X = Unix</li>
+</ul>
+
+<p><strong>Form Factor</strong></p>
+<p>Format: One (1) alphabetic character</p>
+<p>Purpose: Describes the form factor.</p>
+<p>Examples:</p>
+<ul>
+    <li>P = Physical</li>
+    <li>V = Virtual</li>
+</ul>
+
+<p><strong>Region</strong></p>
+<p>Format: One (1) alphabetic character</p>
+<p>Purpose: Describes the SDLC region that the host is considered a part of.</p>
+<p>Examples:</p>
+<ul>
+    <li>P = Production</li>
+    <li>T = UAT</li>
+    <li>Q = Quality Assurance</li>
+    <li>D = Development</li>
+    <li>M = Demo</li>
+    <li>R = Training</li>
+</ul>
+
+<p><strong>Location</strong></p>
+<p>Format: Two (2) alphabetic characters</p>
+<p>Purpose: Describes the physical, logical, or geographic location in which the host resides.</p>
+<p>Examples:</p>
+<ul>
+    <li>EP = Energy Plaza</li>
+    <li>EC = Energy Control Center</li>
+    <li>EX = Floats between EP and ECC</li>
+    <li>AZ = Azure</li>
+</ul>
+
+<p><strong>Purpose</strong></p>
+<p>Format: Four (4) alphabetic characters</p>
+<p>Purpose: Describes the primary purpose of the host.</p>
+<p>Examples:</p>
+<ul>
+    <li>DOMC = Domain Controller</li>
+    <li>SQLS = Microsoft SQL Server</li>
+    <li>SQLC = Microsoft SQL Server Cluster</li>
+    <li>GISA = GIS Application</li>
+</ul>
+
+<p><strong>Identifier</strong></p>
+<p>Format: Four (4) numeric characters</p>
+<p>Purpose: An incremental number starting at 0001 that is used to uniquely define hosts that otherwise share the same name (i.e., share the same Platform, Form Factor, Region, Location, and Purpose).</p>
+<p>Example: 0001, 0002, etc.</p>
+
+<h3>Storage Accounts</h3>
+<p>(Note: We are following OPPD on-prem standards for SQL instances naming conventions. We are not using hyphens to separate words)</p>
+<p><code>[storage resource]-[application]-[environment]-[az location]-[instance]</code></p>
+<p>Example: <code>stgisprodcus001</code></p>
+
+<h3>Virtual Networks (vnets)</h3>
+<p>Example: <code>vnet-gis-prod-svc-cus-001</code></p>
+<p><code>[resource type]-[application]-[environment]-[resource group name]-[az location]-[instance]</code></p>
+
+<h3>Network Security Groups (NSGs)</h3>
+<p>Example: <code>nsg-gis-prod-webtier-cus-001</code></p>
+<p><code>[resource type]-[application]-[environment]-[resource group name]-[az location]-[instance]</code></p>
+
+<h3>SQL Databases</h3>
+<p>(Note: We are following OPPD on-prem standards for SQL instances naming conventions. We are not using hyphens to separate words)</p>
+<p>Format: <code>W – Windows (Change to something related to cloud. For example “cr”) V – Virtual Machine D/T/Q/P – Dev/Test/QA/Prod AZ – Azure sql – database type 0001 - Instance</code></p>
+<p>Example: <code>wvpazsqls0001</code></p>
+
+<p><strong>Consider using a naming convention tool:</strong> There are several tools available that can help automate naming conventions and ensure consistency across resources.</p>
+<p>By following these best practices, OPPD can ensure that Azure resources are named in a consistent and easy-to-understand manner, which can help reduce confusion and make it easier to manage resources.</p>
+
+<h3>Azure Best Practices</h3>
+<p><a href="https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming">Azure Best Practices</a></p>
